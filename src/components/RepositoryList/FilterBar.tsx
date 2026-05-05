@@ -26,11 +26,11 @@ function FilterSelect<T extends string>({
 }) {
   return (
     <div className="flex flex-col gap-1">
-      <label className="text-xs text-slate-500 font-medium uppercase tracking-wider">{label}</label>
+      <label className="text-xs text-gray-500 font-medium uppercase tracking-wider">{label}</label>
       <select
         value={value}
         onChange={(e) => onChange(e.target.value as T)}
-        className="bg-slate-900 border border-slate-700 rounded-md px-2 py-1.5 text-xs text-slate-300 focus:outline-none focus:border-blue-500 cursor-pointer"
+        className="bg-white border border-gray-300 rounded-md px-2 py-1.5 text-xs text-gray-700 focus:outline-none focus:border-gray-900 cursor-pointer"
       >
         {options.map((opt) => (
           <option key={opt} value={opt}>

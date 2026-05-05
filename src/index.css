@@ -12,7 +12,7 @@ body,
   padding: 0;
 }
 
-/* Custom scrollbar for dark theme */
+/* Custom scrollbar for light theme */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
@@ -23,12 +23,12 @@ body,
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #334155;
+  background: #d1d5db;
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #475569;
+  background: #9ca3af;
 }
 
 /* Smooth font rendering */

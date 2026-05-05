@@ -24,26 +24,26 @@ export function TaskDetailsModal({ execution, onClose }: TaskDetailsModalProps) 
       onClick={(e) => e.target === e.currentTarget && onClose()}
     >
       {/* Backdrop */}
-      <div className="absolute inset-0 bg-slate-950/80 backdrop-blur-sm" onClick={onClose} />
+      <div className="absolute inset-0 bg-black/30 backdrop-blur-sm" onClick={onClose} />
 
       {/* Modal */}
-      <div className="relative w-full max-w-2xl bg-slate-900 border border-slate-700 rounded-2xl shadow-2xl shadow-slate-950 overflow-hidden">
+      <div className="relative w-full max-w-2xl bg-white border border-gray-200 rounded-2xl shadow-2xl overflow-hidden">
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-slate-800">
+        <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200">
           <div className="flex items-center gap-3">
-            <div className="p-2 rounded-lg bg-blue-500/10 text-blue-400">
+            <div className="p-2 rounded-lg bg-gray-100 text-gray-700">
               <Icon size={18} />
             </div>
             <div>
-              <h2 className="text-base font-semibold text-slate-100">{execution.taskLabel}</h2>
-              <p className="text-xs text-slate-500">on {execution.repoName}</p>
+              <h2 className="text-base font-semibold text-gray-900">{execution.taskLabel}</h2>
+              <p className="text-xs text-gray-400">on {execution.repoName}</p>
             </div>
           </div>
           <div className="flex items-center gap-3">
             <StatusBadge status={execution.status} />
             <button
               onClick={onClose}
-              className="text-slate-500 hover:text-slate-300 transition-colors p-1 rounded-md hover:bg-slate-800"
+              className="text-gray-400 hover:text-gray-700 transition-colors p-1 rounded-md hover:bg-gray-100"
             >
               <X size={18} />
             </button>
@@ -54,27 +54,27 @@ export function TaskDetailsModal({ execution, onClose }: TaskDetailsModalProps) 
         <div className="px-6 py-5 space-y-5">
           {/* Stats row */}
           <div className="grid grid-cols-3 gap-3">
-            <div className="flex items-center gap-2 bg-slate-800/60 rounded-lg p-3">
-              <GitBranch size={14} className="text-slate-500" />
+            <div className="flex items-center gap-2 bg-gray-100 rounded-lg p-3">
+              <GitBranch size={14} className="text-gray-400" />
               <div>
-                <div className="text-xs text-slate-600">Repository</div>
-                <div className="text-xs font-medium text-slate-300">{execution.repoName}</div>
+                <div className="text-xs text-gray-400">Repository</div>
+                <div className="text-xs font-medium text-gray-700">{execution.repoName}</div>
               </div>
             </div>
-            <div className="flex items-center gap-2 bg-slate-800/60 rounded-lg p-3">
-              <Clock size={14} className="text-slate-500" />
+            <div className="flex items-center gap-2 bg-gray-100 rounded-lg p-3">
+              <Clock size={14} className="text-gray-400" />
               <div>
-                <div className="text-xs text-slate-600">Duration</div>
-                <div className="text-xs font-medium text-slate-300">
+                <div className="text-xs text-gray-400">Duration</div>
+                <div className="text-xs font-medium text-gray-700">
                   {duration !== null ? `${duration}s` : '—'}
                 </div>
               </div>
             </div>
-            <div className="flex items-center gap-2 bg-slate-800/60 rounded-lg p-3">
-              <Terminal size={14} className="text-slate-500" />
+            <div className="flex items-center gap-2 bg-gray-100 rounded-lg p-3">
+              <Terminal size={14} className="text-gray-400" />
               <div>
-                <div className="text-xs text-slate-600">Log entries</div>
-                <div className="text-xs font-medium text-slate-300">{execution.logs.length}</div>
+                <div className="text-xs text-gray-400">Log entries</div>
+                <div className="text-xs font-medium text-gray-700">{execution.logs.length}</div>
               </div>
             </div>
           </div>
@@ -94,8 +94,8 @@ export function TaskDetailsModal({ execution, onClose }: TaskDetailsModalProps) 
                 <XCircle size={15} className="text-red-400 mt-0.5 shrink-0" />
               )}
               <div>
-                <div className="text-xs font-medium text-slate-300 mb-0.5">Summary</div>
-                <div className="text-xs text-slate-400">
+                <div className="text-xs font-medium text-gray-800 mb-0.5">Summary</div>
+                <div className="text-xs text-gray-600">
                   {execution.logs[execution.logs.length - 1]?.message}
                 </div>
               </div>
@@ -105,8 +105,8 @@ export function TaskDetailsModal({ execution, onClose }: TaskDetailsModalProps) 
           {/* Full log */}
           <div>
             <div className="flex items-center gap-2 mb-2">
-              <FileText size={13} className="text-slate-500" />
-              <span className="text-xs font-medium text-slate-400 uppercase tracking-wider">Full Log</span>
+              <FileText size={13} className="text-gray-400" />
+              <span className="text-xs font-medium text-gray-500 uppercase tracking-wider">Full Log</span>
             </div>
             <LogStream logs={execution.logs} isStreaming={false} />
           </div>

@@ -16,12 +16,12 @@ export function AgentExecutionPanel({ execution, onRetry, onOpenDetails }: Agent
 
   if (!execution) {
     return (
-      <div className="bg-slate-900 border border-slate-800 rounded-xl p-8 flex flex-col items-center justify-center gap-3 text-center min-h-[200px]">
-        <div className="p-3 rounded-full bg-slate-800 text-slate-600">
+      <div className="bg-white border border-gray-200 rounded-xl p-8 flex flex-col items-center justify-center gap-3 text-center min-h-[200px]">
+        <div className="p-3 rounded-full bg-gray-100 text-gray-400">
           <Slash size={24} />
         </div>
-        <p className="text-sm text-slate-500">No agent task running.</p>
-        <p className="text-xs text-slate-700">Select a repository and run a task above to see live output here.</p>
+        <p className="text-sm text-gray-500">No agent task running.</p>
+        <p className="text-xs text-gray-400">Select a repository and run a task above to see live output here.</p>
       </div>
     );
   }
@@ -29,25 +29,25 @@ export function AgentExecutionPanel({ execution, onRetry, onOpenDetails }: Agent
   const Icon = taskIcon[execution.taskType];
 
   return (
-    <div className="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden">
+    <div className="bg-white border border-gray-200 rounded-xl overflow-hidden">
       {/* Panel header */}
-      <div className="flex items-center justify-between px-5 py-4 border-b border-slate-800">
+      <div className="flex items-center justify-between px-5 py-4 border-b border-gray-200">
         <div className="flex items-center gap-3">
-          <div className="p-1.5 rounded-lg bg-blue-500/10 text-blue-400">
+          <div className="p-1.5 rounded-lg bg-gray-100 text-gray-700">
             <Icon size={16} />
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <span className="text-sm font-semibold text-slate-200">{execution.taskLabel}</span>
-              <span className="text-slate-600 text-xs">on</span>
-              <span className="text-xs font-mono text-blue-400">{execution.repoName}</span>
+              <span className="text-sm font-semibold text-gray-800">{execution.taskLabel}</span>
+              <span className="text-gray-400 text-xs">on</span>
+              <span className="text-xs font-mono text-gray-900 font-semibold">{execution.repoName}</span>
             </div>
             <div className="flex items-center gap-3 mt-0.5">
-              <span className="text-xs text-slate-600">
+              <span className="text-xs text-gray-400">
                 Started {new Date(execution.startedAt).toLocaleTimeString()}
               </span>
               {execution.completedAt && (
-                <span className="text-xs text-slate-600">
+                <span className="text-xs text-gray-400">
                   · Finished {new Date(execution.completedAt).toLocaleTimeString()}
                 </span>
               )}
@@ -60,7 +60,7 @@ export function AgentExecutionPanel({ execution, onRetry, onOpenDetails }: Agent
 
           <button
             onClick={onOpenDetails}
-            className="flex items-center gap-1.5 text-xs text-slate-400 hover:text-slate-200 bg-slate-800 hover:bg-slate-700 border border-slate-700 px-3 py-1.5 rounded-lg transition-colors"
+            className="flex items-center gap-1.5 text-xs text-gray-500 hover:text-gray-800 bg-gray-100 hover:bg-gray-200 border border-gray-200 px-3 py-1.5 rounded-lg transition-colors"
           >
             <Info size={13} />
             Details
@@ -69,7 +69,7 @@ export function AgentExecutionPanel({ execution, onRetry, onOpenDetails }: Agent
           {canRetry && (
             <button
               onClick={onRetry}
-              className="flex items-center gap-1.5 text-xs text-blue-400 hover:text-blue-300 bg-blue-500/10 hover:bg-blue-500/20 border border-blue-500/20 px-3 py-1.5 rounded-lg transition-colors"
+              className="flex items-center gap-1.5 text-xs text-gray-900 hover:text-gray-700 bg-gray-100 hover:bg-gray-200 border border-gray-300 px-3 py-1.5 rounded-lg transition-colors"
             >
               <RefreshCw size={13} />
               Retry

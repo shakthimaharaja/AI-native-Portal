@@ -3,10 +3,10 @@ import type { AgentStatus } from '../../types';
 const config: Record<AgentStatus, { label: string; dot: string; text: string; bg: string; border: string }> = {
   idle: {
     label: 'Idle',
-    dot: 'bg-slate-500',
-    text: 'text-slate-400',
-    bg: 'bg-slate-800/40',
-    border: 'border-slate-700/50',
+    dot: 'bg-gray-400',
+    text: 'text-gray-500',
+    bg: 'bg-gray-100',
+    border: 'border-gray-200',
   },
   pending: {
     label: 'Pending',

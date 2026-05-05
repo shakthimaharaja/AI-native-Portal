@@ -17,7 +17,7 @@ export default function App() {
     execution?.status === 'running' || execution?.status === 'pending';
 
   return (
-    <div className="h-screen flex flex-col bg-slate-950 text-slate-100 overflow-hidden">
+    <div className="h-screen flex flex-col bg-white text-gray-900 overflow-hidden">
       <Header />
 
       <div className="flex flex-1 overflow-hidden">
@@ -34,7 +34,7 @@ export default function App() {
                 isAgentRunning={isAgentRunning}
               />
               <section>
-                <h2 className="text-sm font-semibold text-slate-400 uppercase tracking-wider mb-3">
+                <h2 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">
                   Agent Execution
                 </h2>
                 <AgentExecutionPanel
@@ -61,12 +61,12 @@ export default function App() {
 function EmptyState() {
   return (
     <div className="flex flex-col items-center justify-center h-full gap-4 text-center p-8">
-      <div className="p-5 rounded-2xl bg-slate-800/50 border border-slate-700/50">
-        <GitBranch size={36} className="text-slate-600" />
+      <div className="p-5 rounded-2xl bg-gray-100 border border-gray-200">
+        <GitBranch size={36} className="text-gray-400" />
       </div>
       <div>
-        <h2 className="text-base font-semibold text-slate-400 mb-1">No repository selected</h2>
-        <p className="text-sm text-slate-600 max-w-xs">
+        <h2 className="text-base font-semibold text-gray-500 mb-1">No repository selected</h2>
+        <p className="text-sm text-gray-400 max-w-xs">
           Pick a repository from the sidebar to view insights and trigger AI agent tasks.
         </p>
       </div>
