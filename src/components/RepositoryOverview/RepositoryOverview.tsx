@@ -13,10 +13,10 @@ import {
   GitPullRequest,
   Lock,
   Globe,
-} from 'lucide-react';
-import type { Repository, AgentTask } from '../../types';
-import { agentTasks } from '../../data/mockTasks';
-import { taskIcon } from '../AgentExecution/taskIcon';
+} from "lucide-react";
+import type { Repository, AgentTask } from "../../types";
+import { agentTasks } from "../../data/mockTasks";
+import { taskIcon } from "../AgentExecution/taskIcon";
 
 interface RepositoryOverviewProps {
   repo: Repository;
@@ -25,10 +25,26 @@ interface RepositoryOverviewProps {
 }
 
 const ciConfig = {
-  passing: { icon: <CircleCheck size={13} className="text-emerald-400" />, label: 'Passing', cls: 'text-emerald-400' },
-  failing: { icon: <CircleX size={13} className="text-red-400" />, label: 'Failing', cls: 'text-red-400' },
-  pending: { icon: <Clock size={13} className="text-amber-400" />, label: 'Pending', cls: 'text-amber-400' },
-  unknown: { icon: <Clock size={13} className="text-slate-500" />, label: 'Unknown', cls: 'text-slate-500' },
+  passing: {
+    icon: <CircleCheck size={13} className="text-emerald-400" />,
+    label: "Passing",
+    cls: "text-emerald-400",
+  },
+  failing: {
+    icon: <CircleX size={13} className="text-red-400" />,
+    label: "Failing",
+    cls: "text-red-400",
+  },
+  pending: {
+    icon: <Clock size={13} className="text-amber-400" />,
+    label: "Pending",
+    cls: "text-amber-400",
+  },
+  unknown: {
+    icon: <Clock size={13} className="text-slate-500" />,
+    label: "Unknown",
+    cls: "text-slate-500",
+  },
 };
 
 function MetricCard({
@@ -58,11 +74,18 @@ function HealthRing({ score }: { score: number }) {
   const radius = 28;
   const circumference = 2 * Math.PI * radius;
   const strokeDashoffset = circumference - (score / 100) * circumference;
-  const color = score >= 80 ? '#34d399' : score >= 60 ? '#fbbf24' : '#f87171';
+  const color = score >= 80 ? "#34d399" : score >= 60 ? "#fbbf24" : "#f87171";
   return (
     <div className="relative inline-flex items-center justify-center">
       <svg width="72" height="72" className="-rotate-90">
-        <circle cx="36" cy="36" r={radius} fill="none" stroke="#e5e7eb" strokeWidth="6" />
+        <circle
+          cx="36"
+          cy="36"
+          r={radius}
+          fill="none"
+          stroke="#e5e7eb"
+          strokeWidth="6"
+        />
         <circle
           cx="36"
           cy="36"
@@ -73,7 +96,7 @@ function HealthRing({ score }: { score: number }) {
           strokeLinecap="round"
           strokeDasharray={circumference}
           strokeDashoffset={strokeDashoffset}
-          style={{ transition: 'stroke-dashoffset 0.8s ease' }}
+          style={{ transition: "stroke-dashoffset 0.8s ease" }}
         />
       </svg>
       <span className="absolute text-sm font-bold text-gray-900">{score}</span>
@@ -81,7 +104,11 @@ function HealthRing({ score }: { score: number }) {
   );
 }
 
-export function RepositoryOverview({ repo, onRunTask, isAgentRunning }: RepositoryOverviewProps) {
+export function RepositoryOverview({
+  repo,
+  onRunTask,
+  isAgentRunning,
+}: RepositoryOverviewProps) {
   const ci = ciConfig[repo.ciStatus];
 
   return (
@@ -93,7 +120,11 @@ export function RepositoryOverview({ repo, onRunTask, isAgentRunning }: Reposito
             <div className="flex items-center gap-2 mb-1">
               <h1 className="text-xl font-bold text-gray-900">{repo.name}</h1>
               <span className="flex items-center gap-1 text-xs text-gray-500 bg-gray-100 px-2 py-0.5 rounded-full border border-gray-200">
-                {repo.visibility === 'private' ? <Lock size={11} /> : <Globe size={11} />}
+                {repo.visibility === "private" ? (
+                  <Lock size={11} />
+                ) : (
+                  <Globe size={11} />
+                )}
                 {repo.visibility}
               </span>
             </div>
@@ -123,14 +154,32 @@ export function RepositoryOverview({ repo, onRunTask, isAgentRunning }: Reposito
         {/* Meta row */}
         <div className="flex flex-wrap items-center gap-4 mt-4 pt-4 border-t border-gray-200 text-xs text-gray-400">
           <span className="flex items-center gap-1.5">
-            <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: repo.languageColor }} />
+            <span
+              className="w-2.5 h-2.5 rounded-full"
+              style={{ backgroundColor: repo.languageColor }}
+            />
             {repo.language}
           </span>
-          <span className="flex items-center gap-1.5"><Star size={12} />{repo.stars.toLocaleString()}</span>
-          <span className="flex items-center gap-1.5"><GitFork size={12} />{repo.forks}</span>
-          <span className="flex items-center gap-1.5"><Eye size={12} />{repo.watchers}</span>
-          <span className="flex items-center gap-1.5"><GitBranch size={12} />{repo.defaultBranch}</span>
-          <span className="flex items-center gap-1.5"><GitPullRequest size={12} />{repo.openPRs} open PRs</span>
+          <span className="flex items-center gap-1.5">
+            <Star size={12} />
+            {repo.stars.toLocaleString()}
+          </span>
+          <span className="flex items-center gap-1.5">
+            <GitFork size={12} />
+            {repo.forks}
+          </span>
+          <span className="flex items-center gap-1.5">
+            <Eye size={12} />
+            {repo.watchers}
+          </span>
+          <span className="flex items-center gap-1.5">
+            <GitBranch size={12} />
+            {repo.defaultBranch}
+          </span>
+          <span className="flex items-center gap-1.5">
+            <GitPullRequest size={12} />
+            {repo.openPRs} open PRs
+          </span>
           <span className={`flex items-center gap-1.5 ${ci.cls}`}>
             {ci.icon} CI {ci.label}
           </span>
@@ -158,19 +207,23 @@ export function RepositoryOverview({ repo, onRunTask, isAgentRunning }: Reposito
           icon={<ShieldAlert size={13} />}
           label="Vulnerabilities"
           value={repo.vulnerabilities}
-          sub={repo.vulnerabilities === 0 ? 'all clear' : 'needs attention'}
+          sub={repo.vulnerabilities === 0 ? "all clear" : "needs attention"}
         />
         <MetricCard
           icon={<Package size={13} />}
           label="Dependencies"
           value={repo.dependencies}
-          sub={`${Math.round(repo.sizeKb / 1024 * 10) / 10} MB repo size`}
+          sub={`${Math.round((repo.sizeKb / 1024) * 10) / 10} MB repo size`}
         />
         <MetricCard
           icon={<Users size={13} />}
           label="Contributors"
           value={repo.contributors}
-          sub={repo.coveragePercent > 0 ? `${repo.coveragePercent}% coverage` : 'no coverage data'}
+          sub={
+            repo.coveragePercent > 0
+              ? `${repo.coveragePercent}% coverage`
+              : "no coverage data"
+          }
         />
       </div>
 
@@ -178,8 +231,12 @@ export function RepositoryOverview({ repo, onRunTask, isAgentRunning }: Reposito
       <div className="bg-white border border-gray-200 rounded-xl p-5">
         <div className="flex items-center justify-between mb-4">
           <div>
-            <h2 className="text-sm font-semibold text-gray-800">Run Agent Task</h2>
-            <p className="text-xs text-gray-500 mt-0.5">Select an AI-powered task to run on this repository</p>
+            <h2 className="text-sm font-semibold text-gray-800">
+              Run Agent Task
+            </h2>
+            <p className="text-xs text-gray-500 mt-0.5">
+              Select an AI-powered task to run on this repository
+            </p>
           </div>
           {isAgentRunning && (
             <span className="flex items-center gap-1.5 text-xs text-amber-400 bg-amber-400/10 border border-amber-400/20 px-2.5 py-1 rounded-full">
@@ -204,8 +261,12 @@ export function RepositoryOverview({ repo, onRunTask, isAgentRunning }: Reposito
                   <Icon size={15} />
                 </div>
                 <div>
-                  <div className="text-xs font-medium text-gray-800">{task.label}</div>
-                  <div className="text-xs text-gray-400 mt-0.5">{task.estimatedTime}</div>
+                  <div className="text-xs font-medium text-gray-800">
+                    {task.label}
+                  </div>
+                  <div className="text-xs text-gray-400 mt-0.5">
+                    {task.estimatedTime}
+                  </div>
                 </div>
               </button>
             );

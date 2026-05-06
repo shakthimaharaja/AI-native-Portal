@@ -1,20 +1,26 @@
-import { useState } from 'react';
-import { Header } from './components/Layout/Header';
-import { RepositoryList } from './components/RepositoryList/RepositoryList';
-import { RepositoryOverview } from './components/RepositoryOverview/RepositoryOverview';
-import { AgentExecutionPanel } from './components/AgentExecution/AgentExecutionPanel';
-import { TaskDetailsModal } from './components/AgentExecution/TaskDetailsModal';
-import { useAgentExecution } from './hooks/useAgentExecution';
-import type { Repository } from './types';
-import { GitBranch } from 'lucide-react';
+import { useState } from "react";
+import { Header } from "./components/Layout/Header";
+import { RepositoryList } from "./components/RepositoryList/RepositoryList";
+import { RepositoryOverview } from "./components/RepositoryOverview/RepositoryOverview";
+import { AgentExecutionPanel } from "./components/AgentExecution/AgentExecutionPanel";
+import { TaskDetailsModal } from "./components/AgentExecution/TaskDetailsModal";
+import { useAgentExecution } from "./hooks/useAgentExecution";
+import type { Repository } from "./types";
+import { GitBranch } from "lucide-react";
 
 export default function App() {
   const [selectedRepo, setSelectedRepo] = useState<Repository | null>(null);
-  const { execution, isDetailsOpen, startExecution, retryExecution, openDetails, closeDetails } =
-    useAgentExecution();
+  const {
+    execution,
+    isDetailsOpen,
+    startExecution,
+    retryExecution,
+    openDetails,
+    closeDetails,
+  } = useAgentExecution();
 
   const isAgentRunning =
-    execution?.status === 'running' || execution?.status === 'pending';
+    execution?.status === "running" || execution?.status === "pending";
 
   return (
     <div className="h-screen flex flex-col bg-white text-gray-900 overflow-hidden">
@@ -22,7 +28,10 @@ export default function App() {
 
       <div className="flex flex-1 overflow-hidden">
         {/* Left sidebar: repository list */}
-        <RepositoryList selectedRepo={selectedRepo} onSelect={setSelectedRepo} />
+        <RepositoryList
+          selectedRepo={selectedRepo}
+          onSelect={setSelectedRepo}
+        />
 
         {/* Main content */}
         <main className="flex-1 overflow-y-auto">
@@ -65,9 +74,12 @@ function EmptyState() {
         <GitBranch size={36} className="text-gray-400" />
       </div>
       <div>
-        <h2 className="text-base font-semibold text-gray-500 mb-1">No repository selected</h2>
+        <h2 className="text-base font-semibold text-gray-500 mb-1">
+          No repository selected
+        </h2>
         <p className="text-sm text-gray-400 max-w-xs">
-          Pick a repository from the sidebar to view insights and trigger AI agent tasks.
+          Pick a repository from the sidebar to view insights and trigger AI
+          agent tasks.
         </p>
       </div>
     </div>

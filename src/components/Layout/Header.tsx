@@ -1,4 +1,4 @@
-import { Bot, ExternalLink, Bell, Settings } from 'lucide-react';
+import { Bot, ExternalLink, Bell, Settings } from "lucide-react";
 
 export function Header() {
   return (

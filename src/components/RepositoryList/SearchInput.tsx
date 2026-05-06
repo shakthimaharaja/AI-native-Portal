@@ -1,4 +1,4 @@
-import { Search } from 'lucide-react';
+import { Search } from "lucide-react";
 
 interface SearchInputProps {
   value: string;
@@ -8,7 +8,10 @@ interface SearchInputProps {
 export function SearchInput({ value, onChange }: SearchInputProps) {
   return (
     <div className="relative">
-      <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={15} />
+      <Search
+        className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+        size={15}
+      />
       <input
         type="text"
         placeholder="Search repositories..."

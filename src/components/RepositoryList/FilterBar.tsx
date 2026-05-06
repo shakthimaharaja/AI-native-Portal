@@ -1,8 +1,20 @@
-import type { FilterLanguage, FilterVisibility, FilterCIStatus } from '../../types';
+import type {
+  FilterLanguage,
+  FilterVisibility,
+  FilterCIStatus,
+} from "../../types";
 
-const LANGUAGES: FilterLanguage[] = ['All', 'TypeScript', 'Python', 'Go', 'JavaScript', 'Kotlin', 'HCL'];
-const VISIBILITIES: FilterVisibility[] = ['All', 'public', 'private'];
-const CI_STATUSES: FilterCIStatus[] = ['All', 'passing', 'failing', 'pending'];
+const LANGUAGES: FilterLanguage[] = [
+  "All",
+  "TypeScript",
+  "Python",
+  "Go",
+  "JavaScript",
+  "Kotlin",
+  "HCL",
+];
+const VISIBILITIES: FilterVisibility[] = ["All", "public", "private"];
+const CI_STATUSES: FilterCIStatus[] = ["All", "passing", "failing", "pending"];
 
 interface FilterBarProps {
   language: FilterLanguage;
@@ -26,7 +38,9 @@ function FilterSelect<T extends string>({
 }) {
   return (
     <div className="flex flex-col gap-1">
-      <label className="text-xs text-gray-500 font-medium uppercase tracking-wider">{label}</label>
+      <label className="text-xs text-gray-500 font-medium uppercase tracking-wider">
+        {label}
+      </label>
       <select
         value={value}
         onChange={(e) => onChange(e.target.value as T)}
@@ -52,9 +66,24 @@ export function FilterBar({
 }: FilterBarProps) {
   return (
     <div className="grid grid-cols-3 gap-2">
-      <FilterSelect label="Language" value={language} options={LANGUAGES} onChange={onLanguageChange} />
-      <FilterSelect label="Visibility" value={visibility} options={VISIBILITIES} onChange={onVisibilityChange} />
-      <FilterSelect label="CI" value={ciStatus} options={CI_STATUSES} onChange={onCIStatusChange} />
+      <FilterSelect
+        label="Language"
+        value={language}
+        options={LANGUAGES}
+        onChange={onLanguageChange}
+      />
+      <FilterSelect
+        label="Visibility"
+        value={visibility}
+        options={VISIBILITIES}
+        onChange={onVisibilityChange}
+      />
+      <FilterSelect
+        label="CI"
+        value={ciStatus}
+        options={CI_STATUSES}
+        onChange={onCIStatusChange}
+      />
     </div>
   );
 }

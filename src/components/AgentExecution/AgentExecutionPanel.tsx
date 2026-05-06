@@ -1,8 +1,8 @@
-import { RefreshCw, Info, Slash } from 'lucide-react';
-import type { AgentExecution } from '../../types';
-import { StatusBadge } from './StatusBadge';
-import { LogStream } from './LogStream';
-import { taskIcon } from './taskIcon';
+import { RefreshCw, Info, Slash } from "lucide-react";
+import type { AgentExecution } from "../../types";
+import { StatusBadge } from "./StatusBadge";
+import { LogStream } from "./LogStream";
+import { taskIcon } from "./taskIcon";
 
 interface AgentExecutionPanelProps {
   execution: AgentExecution | null;
@@ -10,9 +10,15 @@ interface AgentExecutionPanelProps {
   onOpenDetails: () => void;
 }
 
-export function AgentExecutionPanel({ execution, onRetry, onOpenDetails }: AgentExecutionPanelProps) {
-  const isStreaming = execution?.status === 'running' || execution?.status === 'pending';
-  const canRetry = execution?.status === 'failure' || execution?.status === 'success';
+export function AgentExecutionPanel({
+  execution,
+  onRetry,
+  onOpenDetails,
+}: AgentExecutionPanelProps) {
+  const isStreaming =
+    execution?.status === "running" || execution?.status === "pending";
+  const canRetry =
+    execution?.status === "failure" || execution?.status === "success";
 
   if (!execution) {
     return (
@@ -21,7 +27,9 @@ export function AgentExecutionPanel({ execution, onRetry, onOpenDetails }: Agent
           <Slash size={24} />
         </div>
         <p className="text-sm text-gray-500">No agent task running.</p>
-        <p className="text-xs text-gray-400">Select a repository and run a task above to see live output here.</p>
+        <p className="text-xs text-gray-400">
+          Select a repository and run a task above to see live output here.
+        </p>
       </div>
     );
   }
@@ -38,9 +46,13 @@ export function AgentExecutionPanel({ execution, onRetry, onOpenDetails }: Agent
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <span className="text-sm font-semibold text-gray-800">{execution.taskLabel}</span>
+              <span className="text-sm font-semibold text-gray-800">
+                {execution.taskLabel}
+              </span>
               <span className="text-gray-400 text-xs">on</span>
-              <span className="text-xs font-mono text-gray-900 font-semibold">{execution.repoName}</span>
+              <span className="text-xs font-mono text-gray-900 font-semibold">
+                {execution.repoName}
+              </span>
             </div>
             <div className="flex items-center gap-3 mt-0.5">
               <span className="text-xs text-gray-400">
@@ -48,7 +60,8 @@ export function AgentExecutionPanel({ execution, onRetry, onOpenDetails }: Agent
               </span>
               {execution.completedAt && (
                 <span className="text-xs text-gray-400">
-                  · Finished {new Date(execution.completedAt).toLocaleTimeString()}
+                  · Finished{" "}
+                  {new Date(execution.completedAt).toLocaleTimeString()}
                 </span>
               )}
             </div>
@@ -84,17 +97,17 @@ export function AgentExecutionPanel({ execution, onRetry, onOpenDetails }: Agent
       </div>
 
       {/* Footer summary */}
-      {(execution.status === 'success' || execution.status === 'failure') &&
+      {(execution.status === "success" || execution.status === "failure") &&
         execution.logs.length > 0 && (
           <div
             className={`mx-4 mb-4 px-4 py-3 rounded-lg border text-xs ${
-              execution.status === 'success'
-                ? 'bg-emerald-500/5 border-emerald-500/20 text-emerald-400'
-                : 'bg-red-500/5 border-red-500/20 text-red-400'
+              execution.status === "success"
+                ? "bg-emerald-500/5 border-emerald-500/20 text-emerald-400"
+                : "bg-red-500/5 border-red-500/20 text-red-400"
             }`}
           >
             <span className="font-semibold mr-2">
-              {execution.status === 'success' ? '✓ Completed:' : '✗ Failed:'}
+              {execution.status === "success" ? "✓ Completed:" : "✗ Failed:"}
             </span>
             {execution.logs[execution.logs.length - 1]?.message}
           </div>
